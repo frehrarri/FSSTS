@@ -3,53 +3,59 @@ using RPADTO;
 using RPADTO.AccountInfo;
 using RPADTO.ResponseDTO;
 using RPAEntityFramework;
+using RPAEntityFramework.Contexts;
 using RPAEntityFramework.EntityModels;
 
 namespace RPADAL.DAL
 {
     public class AccountInfoDAL : IAccountInfoDAL
     {
-        LogDTO _logDTO;
+        ILogDTO _logDTO;
 
-        public AccountInfoDAL(LogDTO logDTO)
+        public AccountInfoDAL(ILogDTO logDTO)
         {
             _logDTO = logDTO;   
         }
 
-        public void RegisterAccount(AccountRequestDTO requestDTO)
+        public AccountResponseDTO RegisterAccount(AccountRequestDTO requestDTO)
         {
-            using (var context = new AccountInfoContext())
+            AccountResponseDTO responseDTO = new AccountResponseDTO();
+
+            using (var context = new EntityContext())
             {
-                try
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    AccountInfo dataForSave = new AccountInfo();
+                    try
+                    {
+                        AccountInfo accountInfo = new AccountInfo();
+                        accountInfo.Username = requestDTO.Username;
+                        accountInfo.Password = requestDTO.Password;
+                        accountInfo.IsActive = true;
+                        accountInfo.RecoveryQuestion1 = requestDTO.RecoveryQuestion1;
+                        accountInfo.RecoveryQuestion2 = requestDTO.RecoveryQuestion2;
+                        accountInfo.RecoveryQuestion3 = requestDTO.RecoveryQuestion3;
+                        accountInfo.RecoveryAnswer1 = requestDTO.RecoveryAnswer1;
+                        accountInfo.RecoveryAnswer2 = requestDTO.RecoveryAnswer2;
+                        accountInfo.RecoveryAnswer3 = requestDTO.RecoveryAnswer3;
+                        accountInfo.CreatedDate = DateTime.Now;
+                        accountInfo.ModifiedDate = DateTime.MinValue;
+                        accountInfo.ModifiedBy = null;
 
-                    dataForSave.Username = requestDTO.Username;
-                    dataForSave.Password = requestDTO.Password;
-                    dataForSave.IsActive = true;
-                    dataForSave.RecoveryQuestion1 = requestDTO.RecoveryQuestion1;
-                    dataForSave.RecoveryQuestion2 = requestDTO.RecoveryQuestion2;
-                    dataForSave.RecoveryQuestion3 = requestDTO.RecoveryQuestion3;
-                    dataForSave.RecoveryAnswer1 = requestDTO.RecoveryAnswer1;
-                    dataForSave.RecoveryAnswer2 = requestDTO.RecoveryAnswer2;
-                    dataForSave.RecoveryAnswer3 = requestDTO.RecoveryAnswer3;
-                    dataForSave.RegistrationDate = DateTime.Now;
+                        context.AccountInfo.Add(accountInfo);
 
-                    context.AccountInfo.Add(dataForSave);
+                        transaction.Commit();
 
+                        
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
                 }
-                catch (Exception e)
-                {
-                    _logDTO.InnerException = e.InnerException.ToString();
-                    _logDTO.StackTrace = e.StackTrace.ToString();
-                    _logDTO.Message = e.Message;
-                    //add functionality to log this message
-                    throw;
-                }
-                
-
             }
-           
+
+            return responseDTO;
         }
+
     }
 }

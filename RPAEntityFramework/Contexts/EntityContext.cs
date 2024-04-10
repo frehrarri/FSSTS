@@ -17,9 +17,14 @@ namespace RPAEntityFramework.Contexts
 
         public DbSet<AccountInfo> AccountInfo { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSqlLocalDB;Initial Catalog=Development;Integrated Security=True");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            new AccountInfoTypeConfig().Configure(modelBuilder.Entity<AccountInfo>());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccountInfoTypeConfig).Assembly);
         }
 
     }

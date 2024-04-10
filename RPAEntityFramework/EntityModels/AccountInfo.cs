@@ -19,6 +19,5 @@ namespace RPAEntityFramework.EntityModels
         public string RecoveryAnswer2 { get; set; }
         public string RecoveryAnswer3 { get; set; }
         public bool IsActive { get; set; }
-        public DateTime RegistrationDate { get; set; }
     }
 }

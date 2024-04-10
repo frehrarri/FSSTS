@@ -3,7 +3,8 @@ using RPADAL.IDAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<ILoginDAL, LoginDAL>();
+builder.Services.AddScoped<ILoginDAL, LoginDAL>();
+builder.Services.AddScoped<IAccountInfoDAL, AccountInfoDAL>();
 
 var app = builder.Build();
 

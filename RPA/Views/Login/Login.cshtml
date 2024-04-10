@@ -12,11 +12,11 @@
 
         <div id="loginContainer">
     
-            @using(Html.BeginForm("Login, Login"))
+        @using (Html.BeginForm("Login", "Login"))
             {
                 <label id="badPassword" class="Error">@RPAUtility.Constants.IncorrectPassword</label>
                 <br />
-                <label for="Username">Password</label>
+                <label for="Username">Username</label>
                 <br />
                 <input type="text" id="inputUsername" name="Username"/>
 
@@ -24,7 +24,7 @@
 
                 <label id="badUsername" class="Error">@RPAUtility.Constants.IncorrectUsername</label>
                 <br />
-                <label for="Password">Username</label>
+                    <label for="Password">Password</label>
                 <br />
                 <input type="text" id="inputPassword" name="Password" />
 

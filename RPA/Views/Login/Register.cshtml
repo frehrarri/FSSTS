@@ -1,32 +1,29 @@
 ﻿<html
     <head>
-        <link href="~/css/login.css" rel="stylesheet" />
+        @* <link href="~/css/login.css" rel="stylesheet" /> *@
     </head>
     <body>
 
 
         <div id="RegisterContainer">
 
-        @using (Html.BeginForm("Login, Login"))
+        @using (Html.BeginForm("Register", "Login"))
         {
-                    <label id="badPassword" class="Error">@RPAUtility.Constants.IncorrectPassword</label>
-                    <br />
-                    <label for="Username">Password</label>
-                    <br />
-                    <input type="text" id="inputUsername" name="Username"/>
+            <label id="usernameNotValid" class="Error">@RPAUtility.Constants.UsernameNotValid</label>
+            <label id="usernameExists" class="Error">@RPAUtility.Constants.UsernameExists</label>
+            <br />
+            <label for="Username">Username</label>
+            <br />
+            <input type="text" id="inputUsername" name="Username"/>
 
-                    <br />
+            <label id="passwordNotValid" class="Error">@RPAUtility.Constants.PasswordNotValid</label>
+            <br />
+            <label for="Password">Password</label>
+            <br />
+            <input type="text" id="inputPassword" name="Password"/>
+                   
 
-                    <label id="badUsername" class="Error">@RPAUtility.Constants.IncorrectUsername</label>
-                    <br />
-                    <label for="Password">Username</label>
-                    <br />
-                    <input type="text" id="inputPassword" name="Password" />
-
-                    <br />
-                    <br />
-
-                    <input type="button" onclick="validateLogin()" value="Submit">
+            <input type="button" onclick="Register()" value="Submit">
         }
             <br />
         </div>
@@ -35,6 +32,6 @@
 
 @section Scripts {
     <scripts>
-        <script src="~/js/login.js"></script>
+        <script src="~/js/Register.js"></script>
     </scripts>
 }

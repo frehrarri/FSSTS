@@ -1,0 +1,12 @@
+// Add a new migration
+ Add-Migration "CreateAccountInfo" -StartUpProject RPA -Project RPAEntityFramework
+
+// run pending migrations
+Update-Database -StartUpProject RPA -Project RPAEntityFramework
+
+// revert to a previous migration
+CHECK MIGRATION TABLE TO SEE TRUE MIGRATION HISTORY BEFORE REVERTING
+Update-Database -TargetMigration:"<Previous Migration Name>" -StartUpProject RPA -Project RPAEntityFramework
+
+//dummy migrations
+Add-Migration dummy_migration_<date> -StartUpProject RPA -Project RPAEntityFramework

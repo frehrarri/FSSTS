@@ -46,11 +46,12 @@ namespace RPA.Controllers
             return View(); // unauthorized
         }
 
-        public IActionResult Register()
+        public IActionResult Register(AccountRequestDTO accountRequestDTO)
         {
+            _loginBLL.RegisterAccount(accountRequestDTO);
+
             return View();
         }
 
-        public AccountResponseDTO RegisterAccount
     }
 }

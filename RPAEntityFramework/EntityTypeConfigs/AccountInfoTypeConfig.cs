@@ -56,10 +56,18 @@ namespace RPAEntityFramework.EntityTypeConfigs
                 .IsRequired(true);
 
             builder.Property(ai => ai.IsActive)
-                .HasColumnType("boolean");
+                .HasColumnType("BIT");
 
-            builder.Property(ai => ai.RegistrationDate)
-            .HasDefaultValueSql("getdate()");
+            builder.Property(ai => ai.CreatedDate)
+                .HasColumnType("DATETIME");
+
+            builder.Property(ai => ai.ModifiedDate)
+                .HasColumnType("DATETIME");
+
+            builder.Property(ai => ai.ModifiedDate)
+                .HasMaxLength(30)
+                .IsUnicode(false);
+
         }
     }
 }
