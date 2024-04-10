@@ -1,0 +1,40 @@
+﻿<html
+    <head>
+        <link href="~/css/login.css" rel="stylesheet" />
+    </head>
+    <body>
+
+
+        <div id="RegisterContainer">
+
+        @using (Html.BeginForm("Login, Login"))
+        {
+                    <label id="badPassword" class="Error">@RPAUtility.Constants.IncorrectPassword</label>
+                    <br />
+                    <label for="Username">Password</label>
+                    <br />
+                    <input type="text" id="inputUsername" name="Username"/>
+
+                    <br />
+
+                    <label id="badUsername" class="Error">@RPAUtility.Constants.IncorrectUsername</label>
+                    <br />
+                    <label for="Password">Username</label>
+                    <br />
+                    <input type="text" id="inputPassword" name="Password" />
+
+                    <br />
+                    <br />
+
+                    <input type="button" onclick="validateLogin()" value="Submit">
+        }
+            <br />
+        </div>
+    </body>
+</html>
+
+@section Scripts {
+    <scripts>
+        <script src="~/js/login.js"></script>
+    </scripts>
+}
