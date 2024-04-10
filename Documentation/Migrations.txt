@@ -1,5 +1,5 @@
 // Add a new migration
- Add-Migration "CreateAccountInfo" -StartUpProject RPA -Project RPAEntityFramework
+ Add-Migration "" -StartUpProject RPA -Project RPAEntityFramework
 
 // run pending migrations
 Update-Database -StartUpProject RPA -Project RPAEntityFramework

@@ -19,5 +19,12 @@ namespace RPAEntityFramework.EntityModels
         public string RecoveryAnswer2 { get; set; }
         public string RecoveryAnswer3 { get; set; }
         public bool IsActive { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public int ZipCode { get; set; }
+        public string Email { get; set; }
+        public long Phone { get; set; }
     }
 }

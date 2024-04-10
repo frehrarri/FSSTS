@@ -10,13 +10,6 @@ namespace RPADAL.DAL
 {
     public class AccountInfoDAL : IAccountInfoDAL
     {
-        ILogDTO _logDTO;
-
-        public AccountInfoDAL(ILogDTO logDTO)
-        {
-            _logDTO = logDTO;   
-        }
-
         public AccountResponseDTO RegisterAccount(AccountRequestDTO requestDTO)
         {
             AccountResponseDTO responseDTO = new AccountResponseDTO();

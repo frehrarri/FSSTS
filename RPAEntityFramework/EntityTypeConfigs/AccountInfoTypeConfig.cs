@@ -16,44 +16,75 @@ namespace RPAEntityFramework.EntityTypeConfigs
                 .ValueGeneratedOnAdd();
 
             builder.Property(ai => ai.Username)
-                .HasMaxLength(30)
+                .HasMaxLength(20)
                 .IsUnicode(false)
                 .IsRequired(true);
 
             builder.Property(ai => ai.Password)
-                .HasMaxLength(30)
-                .IsUnicode(false)
+                .HasMaxLength(20)
+                .IsUnicode(true)
                 .IsRequired(true);
 
             builder.Property(ai => ai.RecoveryQuestion1)
-                .HasMaxLength(200)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .IsRequired(true);
 
             builder.Property(ai => ai.RecoveryQuestion2)
-                .HasMaxLength(200)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .IsRequired(true);
 
             builder.Property(ai => ai.RecoveryQuestion3)
-                .HasMaxLength(200)
+                .HasMaxLength(100)
                 .IsUnicode(false)
                 .IsRequired(true);
 
             builder.Property(ai => ai.RecoveryAnswer1)
-                .HasMaxLength(200)
+                .HasMaxLength(30)
                 .IsUnicode(false)
                 .IsRequired(true);
 
             builder.Property(ai => ai.RecoveryAnswer2)
-                .HasMaxLength(200)
+                .HasMaxLength(30)
                 .IsUnicode(false)
                 .IsRequired(true);
 
             builder.Property(ai => ai.RecoveryAnswer3)
-                .HasMaxLength(200)
+                .HasMaxLength(30)
                 .IsUnicode(false)
                 .IsRequired(true);
+
+            builder.Property(ai => ai.FirstName)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .IsRequired(true);
+
+            builder.Property(ai => ai.LastName)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .IsRequired(true);
+
+            builder.Property(ai => ai.StreetAddress)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .IsRequired(true);
+
+            builder.Property(ai => ai.City)
+                .HasMaxLength(75)
+                .IsUnicode(false)
+                .IsRequired(true);
+
+            builder.Property(ai => ai.ZipCode)
+                .HasColumnType("INT");
+
+            builder.Property(ai => ai.Email)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .IsRequired(true);
+
+            builder.Property(ai => ai.Phone)
+                .HasColumnType("INT");
 
             builder.Property(ai => ai.IsActive)
                 .HasColumnType("BIT");

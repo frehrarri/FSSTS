@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ILoginBLL, LoginBLL>();
 builder.Services.AddScoped<ILoginDAL, LoginDAL>();
-//builder.Services.AddScoped<ILogDTO, LogDTO>();
+builder.Services.AddScoped<IAccountInfoDAL, AccountInfoDAL>();
 
 var app = builder.Build();
 
