@@ -1,12 +1,12 @@
 // Add a new migration
- Add-Migration "" -StartUpProject RPA -Project RPAEntityFramework
+ Add-Migration "" -StartUpProject MVC -Project EntityFramework
 
 // run pending migrations
-Update-Database -StartUpProject RPA -Project RPAEntityFramework
+Update-Database -StartUpProject MVC -Project EntityFramework
 
 // revert to a previous migration
 CHECK MIGRATION TABLE TO SEE TRUE MIGRATION HISTORY BEFORE REVERTING
-Update-Database -TargetMigration:"<Previous Migration Name>" -StartUpProject RPA -Project RPAEntityFramework
+Update-Database -TargetMigration:"<Previous Migration Name>" -StartUpProject MVC -Project EntityFramework
 
 //dummy migrations
-Add-Migration dummy_migration_<date> -StartUpProject RPA -Project RPAEntityFramework
+Add-Migration dummy_migration_<date> -StartUpProject MVC -Project EntityFramework
