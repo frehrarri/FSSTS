@@ -19,6 +19,7 @@ namespace DTO
         public HttpResponseMessage HttpResponseMessage { get; set; }
         public HttpStatusCode HttpStatusCode { get; set; }
         public string ErrorMessage { get; set; }
+        public bool Authorized { get; set; }
 
         //Logging
         public string Message { get; set; }

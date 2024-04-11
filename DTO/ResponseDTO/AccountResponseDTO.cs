@@ -1,6 +1,6 @@
 ﻿namespace DTO.ResponseDTO
 {
-    public class AccountResponseDTO
+    public class AccountResponseDTO : BaseDTO
     {
         public int AccountInfoID { get; set; }
         public string Username { get; set; }

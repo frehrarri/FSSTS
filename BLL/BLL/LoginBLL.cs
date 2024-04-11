@@ -4,6 +4,7 @@ using DAL.IDAL;
 using DTO.AccountInfo;
 using DTO.Login;
 using DTO.RequestDTO;
+using DTO.ResponseDTO;
 using Utility;
 
 namespace BLL.BLL
@@ -42,6 +43,13 @@ namespace BLL.BLL
         public void RegisterAccount(AccountRequestDTO requestDTO)
         {
             _accountInfoDAL.RegisterAccount(requestDTO);
+        }
+
+        public AccountResponseDTO ValidateRegistration(AccountRequestDTO accountRequestDTO)
+        {
+            AccountResponseDTO responseDTO = new AccountResponseDTO();
+            //validation
+            return responseDTO;
         }
     }
 }

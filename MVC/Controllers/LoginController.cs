@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using MVC.Models;
+using DTO.ResponseDTO;
 
 namespace MVC.Controllers
 {
@@ -25,37 +26,39 @@ namespace MVC.Controllers
             _loginBLL = loginBLL;
         }
 
-        public IActionResult Login()
+        public IActionResult Login(LoginRequestDTO requestDTO)
         {
-            //VerifyLoginCredentials();
+            LoginResponseDTO responseDTO = ValidateLogin(requestDTO);
 
-            return View();
-        }
-
-        public IActionResult ValidateLogin(LoginRequestDTO requestDTO)
-        {
-            LoginResponseDTO loginResponseDTO = _loginBLL.ValidateLoginCredentials(requestDTO);
-
-            if (loginResponseDTO != null)
+            if (!responseDTO.Authorized)
             {
-                if (loginResponseDTO.Authorized)
-                {
-                    return View(); // homepage
-                }
+                return Json(responseDTO); //invalid credentials - validation message
             }
-            return View(); // unauthorized
+
+            return View(); // homepage
         }
 
-        public IActionResult Register()
+        public LoginResponseDTO ValidateLogin(LoginRequestDTO requestDTO)
         {
-            //_loginBLL.RegisterAccount(requestDTO);
+            return _loginBLL.ValidateLoginCredentials(requestDTO);
+        }
 
+        public IActionResult Register(AccountRequestDTO accountRequestDTO)
+        {
+            AccountResponseDTO responseDTO = ValidateRegistration(accountRequestDTO);
+
+            if (responseDTO.ValidationErrors.Any())
+            {
+                return Json(responseDTO); //invalid registration - validation messages
+            }
+            _loginBLL.RegisterAccount(accountRequestDTO);
             return View();
         }
 
-        public IActionResult ValidateRegistration(AccountRequestDTO requestDTO)
+        [HttpPost]
+        public AccountResponseDTO ValidateRegistration(AccountRequestDTO accountRequestDTO)
         {
-            return View(); //homepage
+            return _loginBLL.ValidateRegistration(accountRequestDTO);
         }
 
     }
