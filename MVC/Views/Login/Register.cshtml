@@ -5,6 +5,7 @@
     <body>
 
 
+        <label id="errorList" class="Error"></label>
         <div id="RegisterContainer">
 
         @using (Html.BeginForm("Register", "Login"))
@@ -45,14 +46,11 @@
             <br />
             <input type="text" id="phone" name="phone"/>
 
-            <label id="usernameNotValid" class="Error">@Utility.Constants.UsernameNotValid</label>
-            <label id="usernameExists" class="Error">@Utility.Constants.UsernameExists</label>
             <br />
             <label for="Username">Username</label>
             <br />
             <input type="text" id="inputUsername" name="Username"/>
 
-            <label id="passwordNotValid" class="Error">@Utility.Constants.PasswordNotValid</label>
             <br />
             <label for="Password">Password</label>
             <br />
