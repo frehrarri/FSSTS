@@ -45,20 +45,21 @@ namespace MVC.Controllers
 
         public IActionResult Register(AccountRequestDTO accountRequestDTO)
         {
-            AccountResponseDTO responseDTO = ValidateRegistration(accountRequestDTO);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ValidateRegistration(AccountRequestDTO accountRequestDTO)
+        {
+            var responseDTO = _loginBLL.ValidateRegistration(accountRequestDTO);
 
             if (responseDTO.ValidationErrors.Any())
             {
                 return Json(responseDTO); //invalid registration - validation messages
             }
+
             _loginBLL.RegisterAccount(accountRequestDTO);
             return View();
-        }
-
-        [HttpPost]
-        public AccountResponseDTO ValidateRegistration(AccountRequestDTO accountRequestDTO)
-        {
-            return _loginBLL.ValidateRegistration(accountRequestDTO);
         }
 
     }
